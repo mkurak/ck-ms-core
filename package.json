@@ -1,0 +1,38 @@
+{
+    "name": "ck-ms-core",
+    "version": "0.1.0",
+    "description": "Provides the basic structure for projects that want to be developed with microservice architecture. This infrastructure is mainly based on Dependency Injection and Event Driven architectures.",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/src/index.js",
+        "dev": "ts-node-dev --transpile-only src/index.ts",
+        "test": "NODE_ENV=test jest"
+    },
+    "keywords": [],
+    "author": "CraftoKit Team - Mesut Kurak",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mkurak/ck-ms-core"
+    },
+    "dependencies": {
+        "reflect-metadata": "^0.2.2"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.13",
+        "@types/node": "^22.7.7",
+        "eslint": "^9.13.0",
+        "eslint-config-prettier": "^9.1.0",
+        "jest": "^29.7.0",
+        "prettier": "^3.3.3",
+        "ts-jest": "^29.2.5",
+        "ts-node": "^10.9.2",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.6.3"
+    }
+}

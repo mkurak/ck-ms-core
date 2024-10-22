@@ -1,8 +1,5 @@
 import { Service } from '../decorators/Service';
-import { Context } from '../interfaces/Context';
-import { EventModel } from '../interfaces/EventModel';
-import { HandlerResponse } from '../interfaces/HandlerResponse';
-import { Subscriber } from '../interfaces/Subscriber';
+import { Context, EventModel, HandlerResponse, Subscriber } from '../types';
 
 @Service({ name: 'EventService', lifecycle: 'singleton' })
 export class EventService {

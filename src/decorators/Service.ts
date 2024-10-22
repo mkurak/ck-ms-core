@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { ServiceMetadatas } from '../interfaces/ServiceMetadatas';
+import { ServiceMetadatas } from '../types';
 
 export interface ServiceOptions {
     name?: string;

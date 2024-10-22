@@ -1,6 +1,6 @@
-import { Context } from './interfaces/Context';
 import { ServiceContainer } from './ServiceContainer';
 import { EventService } from './services/EventService';
+import { Context } from './types';
 
 export class App {
     private _serviceContainer: ServiceContainer;
@@ -10,11 +10,7 @@ export class App {
         this._serviceContainer = new ServiceContainer();
     }
 
-    public set injectInitCallback(callback: (payload: Context) => Promise<void>) {
-        const context = this._serviceContainer.createContext;
-
-        this._serviceContainer.register(EventService);
-
+    public injectInitCallback(callback: (payload: Context) => Promise<void>) {
         this._initCallbacks.push(callback);
     }
 

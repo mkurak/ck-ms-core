@@ -1,10 +1,6 @@
 import 'reflect-metadata';
 import { v4 as uuidv4 } from 'uuid';
-import { ServiceModel } from './interfaces/ServiceModel';
-import { SessionModel } from './interfaces/SessionModel';
-import { Lifecycle } from './types';
-import { Context } from './interfaces/Context';
-import { ServiceMetadatas } from './interfaces/ServiceMetadatas';
+import { Context, Lifecycle, ServiceMetadatas, ServiceModel, SessionModel } from './types';
 
 export class ServiceContainer {
     private _services: Map<string, ServiceModel> = new Map();

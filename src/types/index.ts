@@ -4,6 +4,7 @@ export type Context = {
     beginSession(): string;
     endSession(sessionId: string): void;
     resolveAsync<T>(nameOrType: any, sessionId?: string): Promise<T | undefined>;
+    register(classType: new (...args: any[]) => any): void;
 };
 
 export type EventModel = {

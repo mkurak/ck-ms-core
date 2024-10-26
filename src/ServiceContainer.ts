@@ -29,6 +29,7 @@ export class ServiceContainer {
                 beginSession: this.beginSession.bind(this),
                 endSession: this.endSession.bind(this),
                 resolveAsync: this.resolveAsync.bind(this),
+                register: this.register.bind(this),
             };
         }
 

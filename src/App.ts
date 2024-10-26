@@ -1,4 +1,5 @@
 import { ServiceContainer } from './ServiceContainer';
+import { CacheService } from './services/CacheService';
 import { EventService } from './services/EventService';
 import { Context } from './types';
 
@@ -16,6 +17,7 @@ export class App {
 
     public async init(): Promise<void> {
         this._serviceContainer.register(EventService);
+        this._serviceContainer.register(CacheService);
 
         for (const callback of this._initCallbacks) {
             await callback(this._serviceContainer.createContext);

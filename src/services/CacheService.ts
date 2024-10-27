@@ -67,10 +67,14 @@ export class CacheService {
         return this._namespaces.get(namespace)?.clear();
     }
 
-    public async clearAll() {
+    public async dispose() {
         for (const keyv of this._namespaces.values()) {
             await keyv.clear();
         }
+
+        Object.keys(this).forEach((key) => {
+            (this as any)[key] = undefined;
+        });
     }
 
     public emitEvent(namespace: string, event: string) {

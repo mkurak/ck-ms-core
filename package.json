@@ -21,11 +21,13 @@
         "url": "https://github.com/mkurak/ck-ms-core"
     },
     "dependencies": {
+        "amqplib": "^0.10.4",
         "keyv": "^5.1.2",
         "reflect-metadata": "^0.2.2",
         "uuid": "^10.0.0"
     },
     "devDependencies": {
+        "@types/amqplib": "^0.10.5",
         "@types/jest": "^29.5.13",
         "@types/keyv": "^4.2.0",
         "@types/node": "^22.7.7",

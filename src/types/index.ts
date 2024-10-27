@@ -1,3 +1,5 @@
+import { Channel, Options } from 'amqplib';
+
 export type Lifecycle = 'singleton' | 'transient' | 'scoped';
 
 export type Context = {
@@ -49,4 +51,31 @@ export type SessionModel = {
 export type Subscriber = {
     callbackAsync: (payload: HandlerResponse) => Promise<void>;
     order: number | null;
+};
+
+export type ExchangeConfig = {
+    name: string;
+    type: 'direct' | 'fanout' | 'topic' | 'headers';
+    options?: Options.AssertExchange;
+};
+
+export type QueueConfig = {
+    name: string;
+    options?: Options.AssertQueue;
+    bindingKey?: string;
+};
+
+export type ConsumerPayload = {
+    message: any;
+    sessionId: string;
+    ack: () => void;
+    nack: () => void;
+    reject: () => void;
+};
+
+export type PublishOptions = {
+    exchange?: string;
+    routingKey?: string;
+    queue: string;
+    message: string;
 };

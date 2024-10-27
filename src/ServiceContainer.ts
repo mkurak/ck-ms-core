@@ -179,4 +179,12 @@ export class ServiceContainer {
     public get foundedSessionsCount(): number {
         return this._sessions.size;
     }
+
+    public async dispose(): Promise<void> {
+        this.clear();
+
+        Object.keys(this).forEach((key) => {
+            (this as any)[key] = undefined;
+        });
+    }
 }

@@ -121,7 +121,11 @@ export class EventService {
         this._events.delete(eventName);
     }
 
-    public clear(): void {
+    public async dispose(): Promise<void> {
         this._events.clear();
+
+        Object.keys(this).forEach((key) => {
+            (this as any)[key] = undefined;
+        });
     }
 }

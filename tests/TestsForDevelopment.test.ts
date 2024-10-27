@@ -3,6 +3,8 @@ import { App, Context } from '../src';
 import { Service } from '../src/decorators/Service';
 import { CacheService } from '../src/services/CacheService';
 import { QueueService } from '../src/services/QueueService';
+import { MongoDbService } from '../src/services/MongoDbService';
+import mongoose from 'mongoose';
 
 describe('Tests for development', () => {
     test('injectInitCallback', async () => {
@@ -78,6 +80,46 @@ describe('Tests for development', () => {
         });
 
         await app.init();
+
+        await app.dispose();
+    });
+
+    test('MongoDbService', async () => {
+        const app = new App();
+
+        @Service()
+        class TestService {
+            constructor(private mongoDbService?: MongoDbService) {}
+
+            async createModel(): Promise<any> {
+                const connection = await this.mongoDbService!.createConnection();
+                const schema = new mongoose.Schema({
+                    name: String,
+                });
+
+                const model = await this.mongoDbService!.createModel(connection, 'test', schema);
+
+                await model.create({ name: 'test' });
+
+                return await model.findOne({ name: 'test' });
+            }
+        }
+
+        let checkTestData: any;
+
+        app.injectInitCallback(async (payload: Context): Promise<void> => {
+            payload.register(TestService);
+
+            const testService = await payload.resolveAsync<TestService>(TestService);
+            if (testService) {
+                checkTestData = await testService.createModel();
+            }
+        });
+
+        await app.init();
+
+        expect(checkTestData).not.toBeNull();
+        expect(checkTestData?.name).toEqual('test');
 
         await app.dispose();
     });

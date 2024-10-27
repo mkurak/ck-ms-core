@@ -1,6 +1,7 @@
 import { ServiceContainer } from './ServiceContainer';
 import { CacheService } from './services/CacheService';
 import { EventService } from './services/EventService';
+import { MongoDbService } from './services/MongoDbService';
 import { ServiceProvider } from './services/ProviderService';
 import { QueueService } from './services/QueueService';
 import { Context } from './types';
@@ -22,6 +23,7 @@ export class App {
         this._serviceContainer.register(EventService);
         this._serviceContainer.register(CacheService);
         this._serviceContainer.register(QueueService);
+        this._serviceContainer.register(MongoDbService);
 
         const serviceProvider = await this._serviceContainer.resolveAsync<ServiceProvider>(ServiceProvider);
         if (serviceProvider) {
@@ -40,6 +42,7 @@ export class App {
         const eventService = await this._serviceContainer.resolveAsync<EventService>(EventService);
         const cacheService = await this._serviceContainer.resolveAsync<CacheService>(CacheService);
         const queueService = await this._serviceContainer.resolveAsync<QueueService>(QueueService);
+        const mongoDbService = await this._serviceContainer.resolveAsync<MongoDbService>(MongoDbService);
 
         if (eventService) {
             await eventService.dispose();
@@ -51,6 +54,10 @@ export class App {
 
         if (queueService) {
             await queueService.dispose();
+        }
+
+        if (mongoDbService) {
+            await mongoDbService.dispose();
         }
 
         this._serviceContainer.dispose();
